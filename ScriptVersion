@@ -1,6 +1,8 @@
 local ScriptVersion = {}
 
-function  ScriptVersion.GetScriptVersion()
+function ScriptVersion.GetScriptVersion()
     local Version = "1.0.1"
     print(Version)
 end
+
+return ScriptVersion
