@@ -36,6 +36,7 @@ local AutoFarm = {
     autoBrickMagnet = false;
     autoMTBM = false;
     autoMTBMMagnetVersion = false;
+    autoFasterMoney = false;
 }
 local Prestige = {
     LuckNeed = 1;
@@ -66,13 +67,13 @@ Section:NewToggle("Auto Faster Luck", "This will buy automaticly Faster \n luck 
         wait ()
     end
 end)
-Section:NewToggle("Auto Better Luck", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+Section:NewToggle("Auto Faster Money", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
     if state then
-        AutoFarm.automaticlyBasic = state
-        AutoBasicUpgrade()
+        AutoFarm.autoFasterMoney = state
+        AutoFasterMoney()
         wait ()
     else
-        AutoFarm.automaticlyBasic = state
+        AutoFarm.autoFasterMoney = state
         wait ()
     end
 end)
@@ -291,6 +292,14 @@ function AutoFasterLuckN()
     while AutoFarm.autoFasterLuck do
         if AutoFarm.autoFasterLuck == true then
         BasicUpgrade:InvokeServer("FasterLuck")
+        wait()
+        end
+    end
+end
+function AutoFasterMoney()
+    while AutoFarm.autoFasterMoney do
+        if AutoFarm.autoFasterMoney == true then
+        BasicUpgrade:InvokeServer("FasterMoney")
         wait()
         end
     end
