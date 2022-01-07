@@ -25,14 +25,13 @@ local AutoFarm = {
     autoPrestigE = false;
     autoPrestigeLuck = false;
     autoFasterLuck = false;
-    -- Red Tokens
     autoRedLuck = false;
     autoRedMoreLuckGain = false;
     autoRedMoreMoneyProductionFromLucks = false;
-    -- Yellow Tokens
     autoYellowLuck = false;
     autoYellowMoreLuckGain = false;
     autoYellowMoreMoneyProductionFromLucks = false;
+    autoCollectMagnets = false;
 }
 local Prestige = {
     LuckNeed = 1;
@@ -180,10 +179,20 @@ Section3:NewToggle("[Yellow] Auto Money Production", "This will buy automaticly 
         wait ()
     end
 end)
+local Section4 = Tab:NewSection("Auto Collect Magnets")
+Section4:NewToggle("Auto Collect magnets", "This will automaticly \n collect magnets for u", function(state)
+    if state then
+        AutoFarm.autoCollectMagnets = state
+        AutoCollectMagnets()
+        wait ()
+    else
+        AutoFarm.autoCollectMagnets = state
+        wait ()
+    end
+end)
 
 local Tab2 = Window:NewTab("Teleports")
 local SectionV = Tab2:NewSection("Teleport to selected item")
-
 local TPList = {
     "Leaderboard";
     "Shop";
@@ -198,10 +207,6 @@ local TeleporShow = SectionV:NewDropdown("Select Luck","Select where u want to t
     TeleportToSelected()
     wait ()
 end)
-
-
-
-
 function AutoBasicUpgrade()
 while AutoFarm.automaticlyBasic do
     if AutoFarm.automaticlyBasic == true then
@@ -296,10 +301,6 @@ function AutoYellowMoneyProduction()
     end
 end
 end
-
-
-
-
 function TeleportToSelected()
    local TpToPart = Teleport.SelectedWayPoint
    local PlayerCframe = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
@@ -314,4 +315,13 @@ function TeleportToSelected()
         PlayerCframe.CFrame = CFrame.new(0.240956, 5.29937, 108.671)
 wait ()
 end
+end
+function AutoCollectMagnets()
+    while AutoFarm.autoCollectMagnets do
+        if AutoFarm.autoCollectMagnets == true then
+            game:GetService("ReplicatedStorage").RemoteFunctions.CollectGuiItem:InvokeServer(math.random(1, 240))
+            wait (0.0001)
+            -- credits to DCS
+        end
+     end
 end
