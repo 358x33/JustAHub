@@ -37,30 +37,30 @@ Section:NewToggle("Auto Better Luck", "This will buy automaticly Upgrade \n when
     if state then
         AutoFarm.automaticlyBasic = state
         AutoBasicUpgrade()
-        wait (0.1)
+        wait ()
     else
         AutoFarm.automaticlyBasic = state
-        wait (0.1)
+        wait ()
     end
 end)
 Section:NewToggle("Auto Faster Luck", "This will buy automaticly Faster \n luck Upgrade \n when you enough money", function(state)
     if state then
         AutoFarm.autoFasterLuck = state
         AutoFasterLuckN()
-        wait (0.1)
+        wait ()
     else
         AutoFarm.automaticlautoFasterLuckyBasic = state
-        wait (0.1)
+        wait ()
     end
 end)
 Section:NewToggle("Auto Better Luck", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
     if state then
         AutoFarm.automaticlyBasic = state
         AutoBasicUpgrade()
-        wait (0.1)
+        wait ()
     else
         AutoFarm.automaticlyBasic = state
-        wait (0.1)
+        wait ()
     end
 end)
 local Section1 = Tab:NewSection("Auto Prestige")
@@ -68,20 +68,20 @@ Section1:NewToggle("Auto Prestige Normal", "This will buy automaticly Auto Prest
     if state then
         AutoFarm.autoPrestigE = state
         AutoPrestige()
-        wait (0.1)
+        wait ()
     else
         AutoFarm.autoPrestigE = state
-        wait (0.1)
+        wait ()
     end
 end)
 local PrestigeToggle = Section1:NewToggle("Auto Prestige When you will get:" .. (Prestige.LuckNeed), "This will do auto prestige \n when you will get needed Luck that u selected", function(state)
     if state then
         AutoFarm.autoPrestigeLuck = state
         AutoPrestigeLuckReq()
-        wait (0.1)
+        wait ()
     else
         AutoFarm.autoPrestigeLuck = state
-        wait (0.1)
+        wait ()
     end
 end)
 
@@ -106,13 +106,13 @@ local LuckList = {
 local dropdown = Section1:NewDropdown("Select Luck","Select luck that you \n need for prestige", LuckList, function(currentOption)
     Prestige.LuckNeed = currentOption
     PrestigeToggle:UpdateToggle("Auto Prestige When you will get:" .. (Prestige.LuckNeed))
-    wait (0.1)
+    wait ()
 end)
 function AutoBasicUpgrade()
 while AutoFarm.automaticlyBasic do
     if AutoFarm.automaticlyBasic == true then
     BasicUpgrade:InvokeServer("BetterLuck")
-    wait (0.1)
+    wait ()
     end
 end
 end
@@ -120,12 +120,11 @@ function AutoPrestige()
     while AutoFarm.autoPrestigE do
         if AutoFarm.autoPrestigE == true then
         PrestigeEvent:InvokeServer()
-        wait(0.1)
+        wait()
         end
     end
 end
 function AutoPrestigeLuckReq()
-wait (0.1)
 while AutoFarm.autoPrestigeLuck do
     if AutoFarm.autoPrestigeLuck == true then
     for i,v in pairs(Lucks:GetChildren()) do
@@ -135,9 +134,10 @@ while AutoFarm.autoPrestigeLuck do
             local LuckId = v2.Parent.Amount
                  if LuckId.Value >= 1 then
                      PrestigeEvent:InvokeServer()
-                     wait (0.1)
+                     wait ()
                 else
-                     wait(0.1)
+                     wait()
+                     -- nothing will happend but i can make Update Toggle or something
                 end
             end
         end
@@ -145,13 +145,12 @@ while AutoFarm.autoPrestigeLuck do
 end
 end
 end
-wait (0.1)
 end
 function AutoFasterLuckN()
     while AutoFarm.autoFasterLuck do
         if AutoFarm.autoFasterLuck == true then
         BasicUpgrade:InvokeServer("FasterLuck")
-        wait(0.1)
+        wait()
         end
     end
 end
