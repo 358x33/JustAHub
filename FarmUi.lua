@@ -42,6 +42,7 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("JustAHub", "BloodTheme")
 local Tab = Window:NewTab("Auto Farm")
 local Section = Tab:NewSection("Auto Basic Upgrade")
+
 Section:NewToggle("Auto Better Luck", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
     if state then
         AutoFarm.automaticlyBasic = state
@@ -148,11 +149,6 @@ Section2:NewToggle("[Red] Auto Money Production", "This will buy automaticly Upg
         wait ()
     end
 end)
-
-
-
-
-
 local Section3 = Tab:NewSection("Auto Yellow Token Upgrade")
 Section3:NewToggle("[Yellow] Auto More Luck Chance", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
     if state then
@@ -184,6 +180,25 @@ Section3:NewToggle("[Yellow] Auto Money Production", "This will buy automaticly 
         wait ()
     end
 end)
+
+local Tab2 = Window:NewTab("Teleports")
+local SectionV = Tab2:NewSection("Teleport to selected item")
+
+local TPList = {
+    "Leaderboard";
+    "Shop";
+    "Donate";
+    "Server Multi";
+}
+local Teleport = {
+    SelectedWayPoint = Leaderboard;
+}
+local TeleporShow = SectionV:NewDropdown("Select Luck","Select where u want to tp", TPList, function(currentOption)
+    Teleport.SelectedWayPoint = currentOption
+    TeleportToSelected()
+    wait ()
+end)
+
 
 
 
@@ -280,4 +295,11 @@ function AutoYellowMoneyProduction()
         wait ()
     end
 end
+end
+
+
+
+
+function TeleportToSelected()
+   print("true")
 end
