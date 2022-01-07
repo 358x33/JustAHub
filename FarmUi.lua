@@ -29,6 +29,10 @@ local AutoFarm = {
     autoRedLuck = false;
     autoRedMoreLuckGain = false;
     autoRedMoreMoneyProductionFromLucks = false;
+    -- Yellow Tokens
+    autoYellowLuck = false;
+    autoYellowMoreLuckGain = false;
+    autoYellowMoreMoneyProductionFromLucks = false;
 }
 local Prestige = {
     LuckNeed = 1;
@@ -144,6 +148,45 @@ Section2:NewToggle("[Red] Auto Money Production", "This will buy automaticly Upg
         wait ()
     end
 end)
+
+
+
+
+
+local Section3 = Tab:NewSection("Auto Yellow Token Upgrade")
+Section3:NewToggle("[Yellow] Auto More Luck Chance", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+    if state then
+        AutoFarm.autoYellowLuck = state
+        AutoYellowLuck()
+        wait ()
+    else
+        AutoFarm.autoYellowLuck = state
+        wait ()
+    end
+end)
+Section3:NewToggle("[Yellow] Auto More Luck Gain", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+    if state then
+        AutoFarm.autoYellowMoreLuckGain = state
+        AutoYellowLuckGain()
+        wait ()
+    else
+        AutoFarm.autoYellowMoreLuckGain = state
+        wait ()
+    end
+end)
+Section3:NewToggle("[Yellow] Auto Money Production", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+    if state then
+        AutoFarm.autoYellowMoreMoneyProductionFromLucks = state
+        AutoYellowMoneyProduction()
+        wait ()
+    else
+        AutoFarm.autoYellowMoreMoneyProductionFromLucks = state
+        wait ()
+    end
+end)
+
+
+
 function AutoBasicUpgrade()
 while AutoFarm.automaticlyBasic do
     if AutoFarm.automaticlyBasic == true then
@@ -190,7 +233,6 @@ function AutoFasterLuckN()
         end
     end
 end
-
 function AutoRedLuck()
     while AutoFarm.autoRedLuck do
         if AutoFarm.autoRedLuck == true then
@@ -211,6 +253,30 @@ function AutoRedMoneyProduction()
     while AutoFarm.autoRedMoreMoneyProductionFromLucks do
         if AutoFarm.autoRedMoreMoneyProductionFromLucks == true then
         AutoTokenEvent:InvokeServer("Red",3)
+        wait ()
+    end
+end
+end
+function AutoYellowLuck()
+    while AutoFarm.autoYellowLuck do
+        if AutoFarm.autoYellowLuck == true then
+        AutoTokenEvent:InvokeServer("Yellow",1)
+        wait ()
+    end
+end
+end
+function AutoYellowLuckGain()
+    while AutoFarm.autoYellowMoreLuckGain do
+        if AutoFarm.autoYellowMoreLuckGain == true then
+        AutoTokenEvent:InvokeServer("Yellow",2)
+        wait ()
+    end
+end
+end
+function AutoYellowMoneyProduction()
+    while AutoFarm.autoYellowMoreMoneyProductionFromLucks do
+        if AutoFarm.autoYellowMoreMoneyProductionFromLucks == true then
+        AutoTokenEvent:InvokeServer("Yellow",3)
         wait ()
     end
 end
