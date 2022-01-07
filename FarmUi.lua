@@ -202,7 +202,7 @@ local TPList = {
 local Teleport = {
     SelectedWayPoint = Leaderboard;
 }
-local TeleporShow = SectionV:NewDropdown("Select Luck","Select where u want to tp", TPList, function(currentOption)
+local TeleporShow = SectionV:NewDropdown("Select Where to teleport","Select where u want to tp", TPList, function(currentOption)
     Teleport.SelectedWayPoint = currentOption
     TeleportToSelected()
     wait ()
