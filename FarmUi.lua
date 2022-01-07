@@ -9,17 +9,16 @@ local MainStats1 = StatsFolder:WaitForChild("Main")
 local PlayerMainFolder = MainStats1:WaitForChild("MainStats")
 local Lucks = MainStats1:WaitForChild("Lucks")
 local GamepassFolder = MainStats1:WaitForChild("GamePasses")
-
 -- Remotes
 local RemoteFunctionsFolder = ReplicatedStorage:WaitForChild("RemoteFunctions")
 local BasicUpgrade = RemoteFunctionsFolder:WaitForChild("BasicUpgrade")
 local PrestigeEvent = RemoteFunctionsFolder:WaitForChild("Prestige")
 local AutoTokenEvent = RemoteFunctionsFolder:WaitForChild("TokenUpgrade")
-
+local BrickUpgrade = RemoteFunctionsFolder:WaitForChild("BrickUpgrade")
+local BrickProduction = RemoteFunctionsFolder:WaitForChild("BrickProduction")
 -- Version
 local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/ScriptVersion"))()
 print(Version.GetScriptVersion())
-
 -- Tables 
 local AutoFarm = {
     automaticlyBasic = false;
@@ -33,6 +32,10 @@ local AutoFarm = {
     autoYellowMoreLuckGain = false;
     autoYellowMoreMoneyProductionFromLucks = false;
     autoCollectMagnets = false;
+    autoBrickLuck = false;
+    autoBrickMagnet = false;
+    autoMTBM = false;
+    autoMTBMMagnetVersion = false;
 }
 local Prestige = {
     LuckNeed = 1;
@@ -94,7 +97,6 @@ local PrestigeToggle = Section1:NewToggle("Auto Prestige When you will get:" .. 
         wait ()
     end
 end)
-
 local LuckList = {
     "1";
     "2";
@@ -112,7 +114,6 @@ local LuckList = {
     "14";
     "15";
 }
-
 local dropdown = Section1:NewDropdown("Select Luck","Select luck that you \n need for prestige", LuckList, function(currentOption)
     Prestige.LuckNeed = currentOption
     PrestigeToggle:UpdateToggle("Auto Prestige When you will get:" .. (Prestige.LuckNeed))
@@ -191,7 +192,47 @@ Section4:NewToggle("Auto Collect magnets", "This will automaticly \n collect mag
         wait ()
     end
 end)
-
+local Section5 = Tab:NewSection("Auto Bricks")
+Section5:NewToggle("[Bricks] Auto Better Luck", "This will automaticly \n collect magnets for u", function(state)
+    if state then
+        AutoFarm.autoBrickLuck = state
+        AutoBrickLuck()
+        wait ()
+    else
+        AutoFarm.autoBrickLuck = state
+        wait ()
+    end
+end)
+Section5:NewToggle("[Bricks] Auto More Magnet", "This will automaticly \n collect magnets for u", function(state)
+    if state then
+        AutoFarm.autoBrickMagnet = state
+        AutoBrickMoreMagnets()
+        wait ()
+    else
+        AutoFarm.autoBrickMagnet = state
+        wait ()
+    end
+end)
+Section5:NewToggle("[Bricks] Monet to Brick Multi", "This will automaticly \n collect magnets for u", function(state)
+    if state then
+        AutoFarm.autoMTBM = state
+        AutoMTBM()
+        wait ()
+    else
+        AutoFarm.autoMTBM = state
+        wait ()
+    end
+end)
+Section5:NewToggle("[Bricks] Magnet to Brick Multi", "This will automaticly \n collect magnets for u", function(state)
+    if state then
+        AutoFarm.autoMTBMMagnetVersion = state
+        AutoMTBMMagnetVersion()
+        wait ()
+    else
+        AutoFarm.autoMTBMMagnetVersion = state
+        wait ()
+    end
+end)
 local Tab2 = Window:NewTab("Teleports")
 local SectionV = Tab2:NewSection("Teleport to selected item")
 local TPList = {
@@ -326,7 +367,38 @@ function AutoCollectMagnets()
         end
      end
 end
-
+function AutoBrickLuck()
+    while AutoFarm.autoBrickLuck do
+        if AutoFarm.autoBrickLuck == true then
+        BrickUpgrade:InvokeServer("BetterLuck")
+        wait ()
+    end
+end
+end
+function AutoBrickMoreMagnets()
+    while AutoFarm.autoBrickMagnet do
+        if AutoFarm.autoBrickMagnet == true then
+        BrickUpgrade:InvokeServer("MoreMagnets")
+        wait ()
+    end
+end
+end
+function AutoMTBM()
+    while AutoFarm.autoMTBM do
+        if AutoFarm.autoMTBM == true then
+        BrickProduction:InvokeServer("Money")
+        wait ()
+    end
+end
+end
+function AutoMTBMMagnetVersion()
+    while AutoFarm.autoMTBMMagnetVersion do
+        if AutoFarm.autoMTBMMagnetVersion == true then
+        BrickProduction:InvokeServer("Magnet")
+        wait ()
+    end
+end
+end
 local Tab3 = Window:NewTab("Settings")
 local SectionV3 = Tab3:NewSection("Settings")
 SectionV3:NewKeybind("Toogle Ui", "Toggle ur Ui Visible", Enum.KeyCode.Z, function()
@@ -351,7 +423,6 @@ SectionV3:NewButton("Free Gamepasses I think", "Idk if it works", function()
         v.Value = true
     end
 end)
-
 local Tab4 = Window:NewTab("Credits")
 local SectionV2 = Tab4:NewSection("Credits")
 SectionV2:NewLabel("Credits for 358x33 for all scripts")
