@@ -8,6 +8,7 @@ local StatsFolder = ReplicatedStorage:WaitForChild("PlayerData")[plr.UserId]
 local MainStats1 = StatsFolder:WaitForChild("Main")
 local PlayerMainFolder = MainStats1:WaitForChild("MainStats")
 local Lucks = MainStats1:WaitForChild("Lucks")
+local GamepassFolder = MainStats1:WaitForChild("GamePasses")
 
 -- Remotes
 local RemoteFunctionsFolder = ReplicatedStorage:WaitForChild("RemoteFunctions")
@@ -344,6 +345,11 @@ SectionV3:NewButton("Anti afk", "Just a anti afk", function()
    wait(1)
    vu:Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
 end)
+end)
+SectionV3:NewButton("Free Gamepasses I think", "Idk if it works", function()
+    for i,v in pairs(GamepassFolder:GetChildren()) do
+        v.Value = true
+    end
 end)
 
 local Tab4 = Window:NewTab("Credits")
