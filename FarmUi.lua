@@ -50,7 +50,7 @@ Section:NewToggle("Auto Faster Luck", "This will buy automaticly Faster \n luck 
         AutoFasterLuckN()
         wait ()
     else
-        AutoFarm.automaticlautoFasterLuckyBasic = state
+        AutoFarm.autoFasterLuck = state
         wait ()
     end
 end)
