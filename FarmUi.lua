@@ -188,7 +188,7 @@ local TPList = {
     "Leaderboard";
     "Shop";
     "Donate";
-    "Server Multi";
+    "ServerMulti";
 }
 local Teleport = {
     SelectedWayPoint = Leaderboard;
@@ -301,5 +301,17 @@ end
 
 
 function TeleportToSelected()
-   print("true")
+   local TpToPart = Teleport.SelectedWayPoint
+   local PlayerCframe = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart
+
+    if Teleport.SelectedWayPoint == "Leaderboard" then
+        PlayerCframe.CFrame = CFrame.new(0.240956, 5.29937, 108.671)
+    elseif Teleport.SelectedWayPoint == "Shop" then
+        PlayerCframe.CFrame = CFrame.new(82.5545, 5.29937, 2.04031)
+    elseif Teleport.SelectedWayPoint == "ServerMulti" then
+        PlayerCframe.CFrame = CFrame.new(1.51779, 5.29937, -112.158)
+    elseif Teleport.SelectedWayPoint == "Donate" then
+        PlayerCframe.CFrame = CFrame.new(0.240956, 5.29937, 108.671)
+wait ()
+end
 end
