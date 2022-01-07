@@ -6,7 +6,7 @@ if PlaceId == 8438695556 then
     if not game:IsLoaded() then
         game.Loaded:Wait()
     else
-        -- script do farm Ui
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/FarmUi.lua"))()
     end
 else
     plr:kick("Wrong game")
