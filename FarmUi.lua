@@ -312,7 +312,7 @@ function TeleportToSelected()
     elseif Teleport.SelectedWayPoint == "ServerMulti" then
         PlayerCframe.CFrame = CFrame.new(1.51779, 5.29937, -112.158)
     elseif Teleport.SelectedWayPoint == "Donate" then
-        PlayerCframe.CFrame = CFrame.new(0.240956, 5.29937, 108.671)
+        PlayerCframe.CFrame = CFrame.new(-104.272, 5.29937, -4.5429)
 wait ()
 end
 end
