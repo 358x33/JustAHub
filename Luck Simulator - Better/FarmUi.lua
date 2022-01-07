@@ -134,11 +134,9 @@ while AutoFarm.autoPrestigeLuck do
           if v2:IsA("NumberValue") and v2.Name == "Amount" then
             local LuckId = v2.Parent.Amount
                  if LuckId.Value >= 1 then
-                    print("You have LUCK!")
                      PrestigeEvent:InvokeServer()
                      wait (0.1)
                 else
-                     print("You no have needed luck!")
                      wait(0.1)
                 end
             end
