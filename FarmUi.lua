@@ -7,13 +7,13 @@ local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local StatsFolder = ReplicatedStorage:WaitForChild("PlayerData")[plr.UserId]
 local MainStats1 = StatsFolder:WaitForChild("Main")
 local PlayerMainFolder = MainStats1:WaitForChild("MainStats")
-local Money = PlayerMainFolder:WaitForChild("Money")
 local Lucks = MainStats1:WaitForChild("Lucks")
 
 -- Remotes
 local RemoteFunctionsFolder = ReplicatedStorage:WaitForChild("RemoteFunctions")
 local BasicUpgrade = RemoteFunctionsFolder:WaitForChild("BasicUpgrade")
 local PrestigeEvent = RemoteFunctionsFolder:WaitForChild("Prestige")
+local AutoTokenEvent = RemoteFunctionsFolder:WaitForChild("TokenUpgrade")
 
 -- Version
 local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/ScriptVersion"))()
@@ -25,6 +25,10 @@ local AutoFarm = {
     autoPrestigE = false;
     autoPrestigeLuck = false;
     autoFasterLuck = false;
+    -- Red Tokens
+    autoRedLuck = false;
+    autoRedMoreLuckGain = false;
+    autoRedMoreMoneyProductionFromLucks = false;
 }
 local Prestige = {
     LuckNeed = 1;
@@ -109,6 +113,37 @@ local dropdown = Section1:NewDropdown("Select Luck","Select luck that you \n nee
     PrestigeToggle:UpdateToggle("Auto Prestige When you will get:" .. (Prestige.LuckNeed))
     wait ()
 end)
+local Section2 = Tab:NewSection("Auto Red Token Upgrade")
+Section2:NewToggle("[Red] Auto More Luck Chance", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+    if state then
+        AutoFarm.autoRedLuck = state
+        AutoRedLuck()
+        wait ()
+    else
+        AutoFarm.autoRedLuck = state
+        wait ()
+    end
+end)
+Section2:NewToggle("[Red] Auto More Luck Gain", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+    if state then
+        AutoFarm.autoRedMoreLuckGain = state
+        AutoRedLuckGain()
+        wait ()
+    else
+        AutoFarm.autoRedMoreLuckGain = state
+        wait ()
+    end
+end)
+Section2:NewToggle("[Red] Auto Money Production", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
+    if state then
+        AutoFarm.autoRedMoreMoneyProductionFromLucks = state
+        AutoRedMoneyProduction()
+        wait ()
+    else
+        AutoFarm.autoRedMoreMoneyProductionFromLucks = state
+        wait ()
+    end
+end)
 function AutoBasicUpgrade()
 while AutoFarm.automaticlyBasic do
     if AutoFarm.automaticlyBasic == true then
@@ -154,4 +189,29 @@ function AutoFasterLuckN()
         wait()
         end
     end
+end
+
+function AutoRedLuck()
+    while AutoFarm.autoRedLuck do
+        if AutoFarm.autoRedLuck == true then
+        AutoTokenEvent:InvokeServer("Red",1)
+        wait ()
+    end
+end
+end
+function AutoRedLuckGain()
+    while AutoFarm.autoRedMoreLuckGain do
+        if AutoFarm.autoRedMoreLuckGain == true then
+        AutoTokenEvent:InvokeServer("Red",2)
+        wait ()
+    end
+end
+end
+function AutoRedMoneyProduction()
+    while AutoFarm.autoRedMoreMoneyProductionFromLucks do
+        if AutoFarm.autoRedMoreMoneyProductionFromLucks == true then
+        AutoTokenEvent:InvokeServer("Red",3)
+        wait ()
+    end
+end
 end
