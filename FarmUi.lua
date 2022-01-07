@@ -325,3 +325,9 @@ function AutoCollectMagnets()
         end
      end
 end
+
+local Tab3 = Window:NewTab("Credits")
+local SectionV1 = Tab3:NewSection("Credits")
+SectionV1:NewLabel("Credits for 358x33 for all scripts")
+SectionV1:NewLabel("Credits for DCS for collect magnet script")
+SectionV1:NewLabel("Credits for xHeptc for Ui Libray")
