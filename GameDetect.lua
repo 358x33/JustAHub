@@ -44,14 +44,12 @@ local gamesSupported = {
     },
 }
 if gamesSupported[game.PlaceId] then
-    pcall(gamesSupported[game.PlaceId], gamesSupported[game.PlaceId]["function"])
+    CoreGui:SetCore("SendNotification", {
+        Title = (gamesSupported[game.PlaceId]["name"]) .. "\n is supported";
+        Text = "Executing script to it!";
+        Duration = 5;
+    })
     pcall(gamesSupported[game.PlaceId]["function"])
-
-        CoreGui:SetCore("SendNotification", {
-            Title = (gamesSupported[game.PlaceId]["name"]) .. "\n is supported";
-            Text = "Executing script to it!";
-            Duration = 5;
-        })
 else
     CoreGui:SetCore("SendNotification", {
         Title = "Your game is not supported";
