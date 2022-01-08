@@ -9,7 +9,7 @@ local MainStats1 = StatsFolder:WaitForChild("Main")
 local PlayerMainFolder = MainStats1:WaitForChild("MainStats")
 local Lucks = MainStats1:WaitForChild("Lucks")
 local GamepassFolder = MainStats1:WaitForChild("GamePasses")
--- Remotes
+--// Remotes \\--
 local RemoteFunctionsFolder = ReplicatedStorage:WaitForChild("RemoteFunctions")
 local BasicUpgrade = RemoteFunctionsFolder:WaitForChild("BasicUpgrade")
 local PrestigeEvent = RemoteFunctionsFolder:WaitForChild("Prestige")
