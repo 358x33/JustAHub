@@ -1,4 +1,21 @@
 repeat wait() until game:IsLoaded()
+--// Save \\--
+local Name = "JustAHub.confg"
+local DefaultSettings = {
+TimeSpent = 1;
+InjectedTimes = 1;
+InfJumper = false;
+}
+local Settings
+if not pcall(function() readfile(Name) end) then writefile(Name, game:service'HttpService':JSONEncode(DefaultSettings)) end
+Settings = game:service'HttpService':JSONDecode(readfile(Name))
+local function Save()
+writefile(Name,game:service'HttpService':JSONEncode(Settings))
+end
+DefaultSettings.InjectedTimes += 1
+-- Version
+local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion"))()
+print(Version.GetScriptVersion())
 --// Services \\--
 local playerService = game:GetService("Players")
 local plr = playerService.LocalPlayer
@@ -9,16 +26,13 @@ local MainStats1 = StatsFolder:WaitForChild("Main")
 local PlayerMainFolder = MainStats1:WaitForChild("MainStats")
 local Lucks = MainStats1:WaitForChild("Lucks")
 local GamepassFolder = MainStats1:WaitForChild("GamePasses")
---// Remotes \\--
+-- Remotes
 local RemoteFunctionsFolder = ReplicatedStorage:WaitForChild("RemoteFunctions")
 local BasicUpgrade = RemoteFunctionsFolder:WaitForChild("BasicUpgrade")
 local PrestigeEvent = RemoteFunctionsFolder:WaitForChild("Prestige")
 local AutoTokenEvent = RemoteFunctionsFolder:WaitForChild("TokenUpgrade")
 local BrickUpgrade = RemoteFunctionsFolder:WaitForChild("BrickUpgrade")
 local BrickProduction = RemoteFunctionsFolder:WaitForChild("BrickProduction")
--- Version
-local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion"))()
-print(Version.GetScriptVersion())
 -- Tables
 local AutoFarm = {
     automaticlyBasic = false;
@@ -516,5 +530,11 @@ SectionV2:NewLabel("Credits for Sigmarillion for anti afk script")
 SectionV2:NewLabel("Credits for Quamocl for new collect magnet script")
 local Tab5 = Window:NewTab("Config")
 local SectionVV = Tab5:NewSection("Config Setup ( I will end this when I will have time )")
-local SectionVV = Tab5:NewSection("Config Setup ( I will end this when I will have time )")
-print("Script Loaded")
+
+
+SectionV3:NewLabel("Injected Times: "..(DefaultSettings.InjectedTimes).."!")
+local label = SectionV3:NewLabel("You spent using this script time:"..(DefaultSettings.TimeSpent).."!")
+while wait (1) do
+    DefaultSettings.TimeSpent += 1
+    label:UpdateLabel("You spent using this script time:"..(DefaultSettings.TimeSpent))
+end
