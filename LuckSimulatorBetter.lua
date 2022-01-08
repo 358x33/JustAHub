@@ -17,9 +17,9 @@ local AutoTokenEvent = RemoteFunctionsFolder:WaitForChild("TokenUpgrade")
 local BrickUpgrade = RemoteFunctionsFolder:WaitForChild("BrickUpgrade")
 local BrickProduction = RemoteFunctionsFolder:WaitForChild("BrickProduction")
 -- Version
-local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/ScriptVersion"))()
+local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion"))()
 print(Version.GetScriptVersion())
--- Tables 
+-- Tables
 local AutoFarm = {
     automaticlyBasic = false;
     autoPrestigE = false;
@@ -184,7 +184,7 @@ Section3:NewToggle("[Yellow] Auto Money Production", "This will buy automaticly 
     end
 end)
 local Section4 = Tab:NewSection("Auto Collect Magnets")
-Section4:NewToggle("Auto Collect magnets [Old Version]", "This will automaticly \n collect magnets for u", function(state)
+Section4:NewToggle("Auto Collect magnets [Old]", "This will automaticly \n collect magnets for u", function(state)
     if state then
         AutoFarm.autoCollectMagnets = state
         AutoCollectMagnets()
@@ -194,7 +194,7 @@ Section4:NewToggle("Auto Collect magnets [Old Version]", "This will automaticly 
         wait ()
     end
 end)
-Section4:NewToggle("Auto Collect magnets [New Version]", "This will automaticly \n collect magnets for u", function(state)
+Section4:NewToggle("Auto Collect magnets [New]", "This will automaticly \n collect magnets for u", function(state)
     if state then
         AutoFarm.autoFasterMagnet = state
         AutoFasterCollectMagnet()
@@ -499,7 +499,7 @@ local function getexploit()
         ("Undetectable")
  
     return exploit
- end
+end
 SectionV3:NewLabel("Your Roblox username:"..(plrNamr).."")
 SectionV3:NewLabel("Your Roblox Id:"..(plrId).."")
 SectionV3:NewLabel("Your Account Age is:"..(plrAge).."")
