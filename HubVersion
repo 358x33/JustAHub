@@ -1,5 +1,4 @@
 local ScriptVersion = {}
-local Version = "1.0.2"
 
 function ScriptVersion.GetScriptVersion()
     local Version = "1.0.2"
