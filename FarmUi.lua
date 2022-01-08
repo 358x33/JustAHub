@@ -37,6 +37,7 @@ local AutoFarm = {
     autoMTBM = false;
     autoMTBMMagnetVersion = false;
     autoFasterMoney = false;
+    autoFasterMagnet = false;
 }
 local Prestige = {
     LuckNeed = 1;
@@ -183,13 +184,23 @@ Section3:NewToggle("[Yellow] Auto Money Production", "This will buy automaticly 
     end
 end)
 local Section4 = Tab:NewSection("Auto Collect Magnets")
-Section4:NewToggle("Auto Collect magnets", "This will automaticly \n collect magnets for u", function(state)
+Section4:NewToggle("Auto Collect magnets [Old Version]", "This will automaticly \n collect magnets for u", function(state)
     if state then
         AutoFarm.autoCollectMagnets = state
         AutoCollectMagnets()
         wait ()
     else
         AutoFarm.autoCollectMagnets = state
+        wait ()
+    end
+end)
+Section4:NewToggle("Auto Collect magnets [New Version]", "This will automaticly \n collect magnets for u", function(state)
+    if state then
+        AutoFarm.autoFasterMagnet = state
+        AutoFasterCollectMagnet()
+        wait ()
+    else
+        AutoFarm.autoFasterMagnet = state
         wait ()
     end
 end)
@@ -376,6 +387,25 @@ function AutoCollectMagnets()
         end
      end
 end
+function AutoFasterCollectMagnet()
+    wait (0.1)
+    while AutoFarm.autoFasterMagnet do
+        wait (0.1)
+        if AutoFarm.autoFasterMagnet == true then
+            wait (0.1)
+            local RP = game:GetService("ReplicatedStorage")
+            local RemotesEvents = RP:WaitForChild("RemoteEvents")
+            local RemoteEventer = RemotesEvents:WaitForChild("CreateGuiItem")
+            local RemoteFunctioner = RP:WaitForChild("RemoteFunctions")
+            local CGI = RemoteFunctioner:WaitForChild("CollectGuiItem")
+            RemoteEventer.OnClientEvent:Connect(function(a,b)
+                CGI:InvokeServer(b)
+                wait (0.1)
+            end)
+            -- credits to Quamocl
+        end
+     end
+end
 function AutoBrickLuck()
     while AutoFarm.autoBrickLuck do
         if AutoFarm.autoBrickLuck == true then
@@ -435,7 +465,11 @@ end)
 local Tab4 = Window:NewTab("Credits")
 local SectionV2 = Tab4:NewSection("Credits")
 SectionV2:NewLabel("Credits for 358x33 for all scripts")
-SectionV2:NewLabel("Credits for DCS for collect magnet script")
+SectionV2:NewLabel("Credits for DCS for old collect magnet script")
 SectionV2:NewLabel("Credits for xHeptc for Ui Libray")
 SectionV2:NewLabel("Credits for kuds for helping")
 SectionV2:NewLabel("Credits for Sigmarillion for anti afk script")
+SectionV2:NewLabel("Credits for Quamocl for new collect magnet script")
+
+local Tab5 = Window:NewTab("Config")
+local SectionVV = Tab5:NewSection("Config Setup ( I will end this when I will have time )")
