@@ -33,7 +33,7 @@ local gamesSupported = {
     [8438695556] = {
         ["name"] = "Luck Simulator - Better";
         ["function"] = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/FarmUi.lua"))()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/LuckSimulatorBetter.lua"))()
         end
     },
     [5041144419] = {
