@@ -462,6 +462,50 @@ SectionV3:NewButton("Free Gamepasses I think", "Idk if it works", function()
         v.Value = true
     end
 end)
+
+--// Player Information Section \\--\
+local plrNamr = game:GetService("Players")["LocalPlayer"].Name
+local plrId = game:GetService("Players")["LocalPlayer"].UserId
+local plrAge = game:GetService("Players")["LocalPlayer"].AccountAge
+local PremiumUserek = game:GetService("Players")["LocalPlayer"].MembershipType
+local PremiumekValue = "No"
+
+if PremiumUserek == Enum.MembershipType.Premium then
+    PremiumekValue = "Yes"
+else
+    PremiumekValue = "No"
+end
+local LocalizationService = game:GetService("LocalizationService")
+local player = game.Players.LocalPlayer
+ 
+local result, code = pcall(function()
+	return LocalizationService:GetCountryRegionForPlayerAsync(player)
+end)
+local function getexploit()
+    local exploit =
+        (syn and not is_sirhurt_closure and not pebc_execute and "Synapse") or
+        (secure_load and "Sentinel") or
+        (is_sirhurt_closure and "Sirhurt") or
+        (pebc_execute and "ProtoSmasher") or
+        (KRNL_LOADED and "Krnl") or
+        (WrapGlobal and "WeAreDevs") or
+        (isvm and "Proxo") or
+        (shadow_env and "Shadow") or
+        (jit and "EasyExploits") or
+        (getreg()['CalamariLuaEnv'] and "Calamari") or
+        (unit and "") or
+        (IS_VIVA_LOADED and "VIVA") or
+        (IS_COCO_LOADED and "Coco") or
+        ("Undetectable")
+ 
+    return exploit
+ end
+SectionV3:NewLabel("Your Roblox username:"..(plrNamr).."")
+SectionV3:NewLabel("Your Roblox Id:"..(plrId).."")
+SectionV3:NewLabel("Your Account Age is:"..(plrAge).."")
+SectionV3:NewLabel("Premium User:"..(PremiumekValue).."")
+SectionV3:NewLabel("Your Roblox Location:"..(code).."")
+SectionV3:NewLabel("Your Exploit:"..(getexploit()).."")
 local Tab4 = Window:NewTab("Credits")
 local SectionV2 = Tab4:NewSection("Credits")
 SectionV2:NewLabel("Credits for 358x33 for all scripts")
@@ -470,6 +514,5 @@ SectionV2:NewLabel("Credits for xHeptc for Ui Libray")
 SectionV2:NewLabel("Credits for kuds for helping")
 SectionV2:NewLabel("Credits for Sigmarillion for anti afk script")
 SectionV2:NewLabel("Credits for Quamocl for new collect magnet script")
-
 local Tab5 = Window:NewTab("Config")
 local SectionVV = Tab5:NewSection("Config Setup ( I will end this when I will have time )")
