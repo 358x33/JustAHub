@@ -1,6 +1,6 @@
 function GetUpdateLog()
    local UpdateLog = {
-     nil;
+     "[+] Added Faster, Beter Auto COllect Magnets";
+     "[+] Added config tab (WIP)";
    }
 end
- 
