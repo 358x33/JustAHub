@@ -4,7 +4,6 @@ local Name = "JustAHub.confg"
 local DefaultSettings = {
 TimeSpent = 1;
 InjectedTimes = 1;
-InfJumper = false;
 }
 local Settings
 if not pcall(function() readfile(Name) end) then writefile(Name, game:service'HttpService':JSONEncode(DefaultSettings)) end
@@ -12,7 +11,6 @@ Settings = game:service'HttpService':JSONDecode(readfile(Name))
 local function Save()
 writefile(Name,game:service'HttpService':JSONEncode(Settings))
 end
-DefaultSettings.InjectedTimes += 1
 -- Version
 local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion"))()
 print(Version.GetScriptVersion())
@@ -45,7 +43,6 @@ local AutoFarm = {
     autoYellowLuck = false;
     autoYellowMoreLuckGain = false;
     autoYellowMoreMoneyProductionFromLucks = false;
-    autoCollectMagnets = false;
     autoBrickLuck = false;
     autoBrickMagnet = false;
     autoMTBM = false;
@@ -61,6 +58,8 @@ local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHept
 local Window = Library.CreateLib("JustAHub", "BloodTheme")
 local Tab = Window:NewTab("Auto Farm")
 local Section = Tab:NewSection("Auto Basic Upgrade")
+
+DefaultSettings.InjectedTimes += 1
 
 Section:NewToggle("Auto Better Luck", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
     if state then
@@ -129,6 +128,11 @@ local LuckList = {
     "13";
     "14";
     "15";
+    "16";
+    "17";
+    "18";
+    "19";
+    "20";
 }
 local dropdown = Section1:NewDropdown("Select Luck","Select luck that you \n need for prestige", LuckList, function(currentOption)
     Prestige.LuckNeed = currentOption
@@ -194,27 +198,6 @@ Section3:NewToggle("[Yellow] Auto Money Production", "This will buy automaticly 
         wait ()
     else
         AutoFarm.autoYellowMoreMoneyProductionFromLucks = state
-        wait ()
-    end
-end)
-local Section4 = Tab:NewSection("Auto Collect Magnets")
-Section4:NewToggle("Auto Collect magnets [Old]", "This will automaticly \n collect magnets for u", function(state)
-    if state then
-        AutoFarm.autoCollectMagnets = state
-        AutoCollectMagnets()
-        wait ()
-    else
-        AutoFarm.autoCollectMagnets = state
-        wait ()
-    end
-end)
-Section4:NewToggle("Auto Collect magnets [New]", "This will automaticly \n collect magnets for u", function(state)
-    if state then
-        AutoFarm.autoFasterMagnet = state
-        AutoFasterCollectMagnet()
-        wait ()
-    else
-        AutoFarm.autoFasterMagnet = state
         wait ()
     end
 end)
@@ -301,9 +284,9 @@ while AutoFarm.autoPrestigeLuck do
             local LuckId = v2.Parent.Amount
                  if LuckId.Value >= 1 then
                      PrestigeEvent:InvokeServer()
-                     wait ()
+                     wait (0.1)
                 else
-                     wait()
+                     wait(0.1)
                      -- nothing will happend but i can make Update Toggle or something
                 end
             end
@@ -317,7 +300,7 @@ function AutoFasterLuckN()
     while AutoFarm.autoFasterLuck do
         if AutoFarm.autoFasterLuck == true then
         BasicUpgrade:InvokeServer("FasterLuck")
-        wait()
+        wait(0.1)
         end
     end
 end
@@ -325,7 +308,7 @@ function AutoFasterMoney()
     while AutoFarm.autoFasterMoney do
         if AutoFarm.autoFasterMoney == true then
         BasicUpgrade:InvokeServer("FasterMoney")
-        wait()
+        wait(0.1)
         end
     end
 end
@@ -333,7 +316,7 @@ function AutoRedLuck()
     while AutoFarm.autoRedLuck do
         if AutoFarm.autoRedLuck == true then
         AutoTokenEvent:InvokeServer("Red",1)
-        wait ()
+        wait (0.1)
     end
 end
 end
@@ -341,7 +324,7 @@ function AutoRedLuckGain()
     while AutoFarm.autoRedMoreLuckGain do
         if AutoFarm.autoRedMoreLuckGain == true then
         AutoTokenEvent:InvokeServer("Red",2)
-        wait ()
+        wait (0.1)
     end
 end
 end
@@ -349,7 +332,7 @@ function AutoRedMoneyProduction()
     while AutoFarm.autoRedMoreMoneyProductionFromLucks do
         if AutoFarm.autoRedMoreMoneyProductionFromLucks == true then
         AutoTokenEvent:InvokeServer("Red",3)
-        wait ()
+        wait (0.1)
     end
 end
 end
@@ -357,7 +340,7 @@ function AutoYellowLuck()
     while AutoFarm.autoYellowLuck do
         if AutoFarm.autoYellowLuck == true then
         AutoTokenEvent:InvokeServer("Yellow",1)
-        wait ()
+        wait (0.1)
     end
 end
 end
@@ -365,7 +348,7 @@ function AutoYellowLuckGain()
     while AutoFarm.autoYellowMoreLuckGain do
         if AutoFarm.autoYellowMoreLuckGain == true then
         AutoTokenEvent:InvokeServer("Yellow",2)
-        wait ()
+        wait (0.1)
     end
 end
 end
@@ -373,7 +356,7 @@ function AutoYellowMoneyProduction()
     while AutoFarm.autoYellowMoreMoneyProductionFromLucks do
         if AutoFarm.autoYellowMoreMoneyProductionFromLucks == true then
         AutoTokenEvent:InvokeServer("Yellow",3)
-        wait ()
+        wait (0.1)
     end
 end
 end
@@ -391,34 +374,6 @@ function TeleportToSelected()
         PlayerCframe.CFrame = CFrame.new(-104.272, 5.29937, -4.5429)
 wait ()
 end
-end
-function AutoCollectMagnets()
-    while AutoFarm.autoCollectMagnets do
-        if AutoFarm.autoCollectMagnets == true then
-            game:GetService("ReplicatedStorage").RemoteFunctions.CollectGuiItem:InvokeServer(math.random(1, 240))
-            wait (0.0001)
-            -- credits to DCS
-        end
-     end
-end
-function AutoFasterCollectMagnet()
-    wait (0.1)
-    while AutoFarm.autoFasterMagnet do
-        wait (0.1)
-        if AutoFarm.autoFasterMagnet == true then
-            wait (0.1)
-            local RP = game:GetService("ReplicatedStorage")
-            local RemotesEvents = RP:WaitForChild("RemoteEvents")
-            local RemoteEventer = RemotesEvents:WaitForChild("CreateGuiItem")
-            local RemoteFunctioner = RP:WaitForChild("RemoteFunctions")
-            local CGI = RemoteFunctioner:WaitForChild("CollectGuiItem")
-            RemoteEventer.OnClientEvent:Connect(function(a,b)
-                CGI:InvokeServer(b)
-                wait (0.1)
-            end)
-            -- credits to Quamocl
-        end
-     end
 end
 function AutoBrickLuck()
     while AutoFarm.autoBrickLuck do
@@ -523,17 +478,12 @@ SectionV3:NewLabel("Your Exploit:"..(getexploit()).."")
 local Tab4 = Window:NewTab("Credits")
 local SectionV2 = Tab4:NewSection("Credits")
 SectionV2:NewLabel("Credits for 358x33 for all scripts")
-SectionV2:NewLabel("Credits for DCS for old collect magnet script")
 SectionV2:NewLabel("Credits for xHeptc for Ui Libray")
-SectionV2:NewLabel("Credits for kuds for helping")
 SectionV2:NewLabel("Credits for Sigmarillion for anti afk script")
-SectionV2:NewLabel("Credits for Quamocl for new collect magnet script")
-local Tab5 = Window:NewTab("Config")
-local SectionVV = Tab5:NewSection("Config Setup ( I will end this when I will have time )")
 
 
-SectionV3:NewLabel("Injected Times: "..(DefaultSettings.InjectedTimes).."!")
-local label = SectionV3:NewLabel("You spent using this script time:"..(DefaultSettings.TimeSpent).."!")
+SectionV3:NewLabel("Injected Times: "..(DefaultSettings.InjectedTimes))
+local label = SectionV3:NewLabel("You spent using this script time:"..(DefaultSettings.TimeSpent))
 while wait (1) do
     DefaultSettings.TimeSpent += 1
     label:UpdateLabel("You spent using this script time:"..(DefaultSettings.TimeSpent))
