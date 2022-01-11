@@ -60,3 +60,4 @@ end
 else
     game.Players.LocalPlayer:kick("Your Exploit is not supported")
 end
+-- load
