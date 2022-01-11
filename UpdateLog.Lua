@@ -1,7 +1,7 @@
 function GetUpdateLog()
    local UpdateLog = {
-     "[+] Added Faster, Beter Auto COllect Magnets";
-     "[+] Added config tab (WIP)";
-     "[+] Updated Settings";
+     "Added Cooldowns for auto farm";
+     "Removed Auto Collect Magnets bc they no work + too lazy to make bypass or new auto collect magnets";
+     "Some fixes";
    }
 end
