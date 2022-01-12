@@ -53,14 +53,11 @@ local AutoFarm = {
 local Prestige = {
     LuckNeed = 1;
 }
--- Ui Setup
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
 local Window = Library.CreateLib("JustAHub", "BloodTheme")
 local Tab = Window:NewTab("Auto Farm")
 local Section = Tab:NewSection("Auto Basic Upgrade")
-
 DefaultSettings.InjectedTimes += 1
-
 Section:NewToggle("Auto Better Luck", "This will buy automaticly Upgrade \n when you have needed amout of cash", function(state)
     if state then
         AutoFarm.automaticlyBasic = state
@@ -466,7 +463,6 @@ local function getexploit()
         (IS_VIVA_LOADED and "VIVA") or
         (IS_COCO_LOADED and "Coco") or
         ("Undetectable")
- 
     return exploit
 end
 SectionV3:NewLabel("Your Roblox username:"..(plrNamr).."")
@@ -480,11 +476,22 @@ local SectionV2 = Tab4:NewSection("Credits")
 SectionV2:NewLabel("Credits for 358x33 for all scripts")
 SectionV2:NewLabel("Credits for xHeptc for Ui Libray")
 SectionV2:NewLabel("Credits for Sigmarillion for anti afk script")
-
-
+SectionV2:NewLabel("Credits for Ch0nky#8948 for anti cheat 1,2")
 SectionV3:NewLabel("Injected Times: "..(DefaultSettings.InjectedTimes))
 local label = SectionV3:NewLabel("You spent using this script time:"..(DefaultSettings.TimeSpent))
 while wait (1) do
     DefaultSettings.TimeSpent += 1
     label:UpdateLabel("You spent using this script time:"..(DefaultSettings.TimeSpent))
 end
+local Tab5 = Window:NewTab("Anti Cheat")
+local SectionVERYPOG = Tab5:NewSection("Anti Cheat")
+SectionVERYPOG:NewLabel("If anti cheat no works then rejoin \n Look at console! USE ALL ANTI CHEATS")
+SectionVERYPOG:NewButton("Anti Cheat 1", "Disables a few scripts", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/AntiCheat1.lua"))() 
+end)
+SectionVERYPOG:NewButton("Anti Cheat 2", "Disables and removing something", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/AntiCheat2.lua"))()
+end)
+SectionVERYPOG:NewButton("Anti Cheat 3", "Kill and destroy something!", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/AntiCheat3.lua"))()
+end)
