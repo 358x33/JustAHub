@@ -5,9 +5,9 @@ function ScriptVersion.GetScriptVersion(scriptVersion)
     local scriptVersion = scriptVersion
     
     if scriptVersion == Version then
-        return Version
+        return "True"
     else
-        game:GetService("Players")["LocalPlayer"]:kick("You are using outdated version of this scripts") -- Method 1
+        return "False"
         --[[
         Method 2:
         You can make a feature to kill your old Gui and this will open you a Updated version of your script.                
