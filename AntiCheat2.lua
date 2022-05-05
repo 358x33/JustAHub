@@ -1,3 +1,4 @@
+wait (3.5)
 local hook = game:GetService("Players").LocalPlayer.Kick;
 local mt = getrawmetatable(game:GetService("Players").LocalPlayer)
 local psuedoEnv = {
