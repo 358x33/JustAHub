@@ -4,7 +4,7 @@ if game:GetService("ReplicatedStorage").RemoteFunctions:FindFirstChild("Action")
         if pcall(function()
             v:Disable()
         end) then
-            Bypass_Count += 1
+            Bypass_Count += 2
         end
     end
 end
@@ -12,7 +12,7 @@ if pcall(function()
     if Bypass_Count == 0 then return end
     game:GetService("ReplicatedStorage").RemoteFunctions.Action:Destroy()
 end) then
-    Bypass_Count += 1
+    Bypass_Count += 2
 end
 local Anticheat_Env = require(game:GetService("ReplicatedStorage").Main)
 hookfunction(Anticheat_Env.BanPlayer, function(...)
