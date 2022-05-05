@@ -130,6 +130,9 @@ local LuckList = {
     "18";
     "19";
     "20";
+"21";
+"22";
+"23";
 }
 local dropdown = Section1:NewDropdown("Select Luck","Select luck that you \n need for prestige", LuckList, function(currentOption)
     Prestige.LuckNeed = currentOption
@@ -241,12 +244,14 @@ Section5:NewToggle("[Bricks] Magnet to Brick Multi", "This will automaticly \n c
 end)
 local Tab2 = Window:NewTab("Teleports")
 local SectionV = Tab2:NewSection("Teleport to selected item")
+
 local TPList = {
     "Leaderboard";
     "Shop";
     "Donate";
     "ServerMulti";
 }
+
 local Teleport = {
     SelectedWayPoint = Leaderboard;
 }
