@@ -41,24 +41,20 @@ function ScriptVersion.GetScriptVersion(scriptVersion)
         
         And kick player or re-inject it in main script
         
-        Main Script wold look like that
-        local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion.lua"))()
-        local scriptVersionAAAAA = "1.0.4"
+        Main Script wold looks like that:
         
-        local GetVersion = Version.GetScriptVersion(scriptVersionAAAAA)
+local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion.lua"))()
+local scriptVersionAAAAA = "1.0.4"
         
-        if GetVersion == false then
-            player:kick()
-        end
+if Version.GetScriptVersion(scriptVersionAAAAA) then
+
+    local Ver = Version.GetScriptVersion(scriptVersionAAAAA)
+        if Ver == false then
+        killYourLife
+     end
+end
         
-        or second Method:
-        local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion.lua"))()
-        local scriptVersionAAAAA = "1.0.4"
-        Version.GetScriptVersion(scriptVersionAAAAA)
-        
-        if Version.GetScriptVersion(scriptVersionAAAAA) == false then
-            player:kick()
-        end
+
         
         --]]
     end
