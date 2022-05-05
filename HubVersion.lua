@@ -8,13 +8,13 @@ function ScriptVersion.GetScriptVersion(scriptVersion)
         return Version
     else
         game:GetService("Players")["LocalPlayer"]:kick("You are using outdated version of this scripts") -- Method 1
-        -- [[
+        --[[
         Method 2:
         You can make a feature to kill your old Gui and this will open you a Updated version of your script.                
         How to use this feature?
         
         First we need to get loadstring of this:
-        local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion"))()
+        local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion.lua"))() -- You can change it to your own File
         Next we need to call the function
         local GetTrueVersion = Version.GetScriptVersion(1.0.5) 
         
