@@ -1,7 +1,7 @@
 local ScriptVersion = {}
 
 function ScriptVersion.GetScriptVersion(scriptVersion)
-    local Version = 1.0.5
+    local Version = "1.0.5"
     local scriptVersion = scriptVersion
     
     if scriptVersion == Version then
