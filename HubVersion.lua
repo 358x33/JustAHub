@@ -33,6 +33,33 @@ function ScriptVersion.GetScriptVersion(scriptVersion)
         
         This will give you full updateLog
         Thanks for using I hope that i helped!
+        
+        also you can return in "else" segment False
+        
+        else
+        return "False"
+        
+        And kick player or re-inject it in main script
+        
+        Main Script wold look like that
+        local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion.lua"))()
+        local scriptVersionAAAAA = "1.0.4"
+        
+        local GetVersion = Version.GetScriptVersion(scriptVersionAAAAA)
+        
+        if GetVersion == false then
+            player:kick()
+        end
+        
+        or second Method:
+        local Version = loadstring(game:HttpGet("https://raw.githubusercontent.com/358x33/JustAHub/main/HubVersion.lua"))()
+        local scriptVersionAAAAA = "1.0.4"
+        Version.GetScriptVersion(scriptVersionAAAAA)
+        
+        if Version.GetScriptVersion(scriptVersionAAAAA) == false then
+            player:kick()
+        end
+        
         --]]
     end
 end
