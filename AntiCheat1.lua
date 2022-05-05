@@ -5,7 +5,6 @@ local psuedoEnv = {
     ["__namecall"] = mt.__namecall
 }
 local ReturnFunc = function()end
-
 print("Ch0nky#8948 - 579306070040641546 AntiKick") -- remove this if you want, just dont claim it as yours ty
 setreadonly(mt, false)
 mt.__namecall = newcclosure(function(self, Index, ...)
@@ -18,7 +17,6 @@ mt.__namecall = newcclosure(function(self, Index, ...)
     end
     return psuedoEnv.__namecall(self, Index, ...)
 end)
-
 mt.__index = newcclosure(function(self, Index, ...)
     if type(Index) == "string" then
         if Index == "Kick" or Index == "kick" then
